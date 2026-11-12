@@ -1,0 +1,93 @@
+/* Design tokens. Source of truth: Mostashar visual identity guide (palette, roles, contrast table).
+ * Components never use raw hex values; they use these variables so both themes stay consistent. */
+:root {
+  /* Brand palette (guide, page 05) */
+  --charcoal-1: #171B1E;
+  --charcoal-2: #242B30;
+  --charcoal-3: #2D3439;
+  --gold: #C8A85A;
+  --gold-light: #E6CC82;
+  --paper: #F7F5EF;
+  --white: #FFFFFF;
+  --ink: #20262B;
+  --ink-muted: #777D82;          /* large text / non-text only (2.09 on paper is for gold; 4.2 for this on white) */
+  --line-light: #DAD8D0;
+  --line-dark: #394147;
+  /* Derived text colours the guide proposes for small text (guide, page 06) */
+  --ink-muted-small: #596168;
+  --paper-muted-small: #C0C5C8;
+  /* Functional (guide, page 05) */
+  --ok: #27845B;
+  --warn: #C58B32;
+  --err: #C44E4E;
+  --info: #477DB5;
+
+  --font-sans: 'Noto Sans Arabic Variable', 'Noto Sans Arabic', 'Inter Variable', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --radius: 8px;
+  --radius-lg: 12px;
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  --sidebar-w: 300px;
+  --rail-w: 72px;
+}
+
+html[lang='en'] {
+  --font-sans: 'Inter Variable', 'Inter', 'Noto Sans Arabic Variable', 'Noto Sans Arabic', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+/* LIGHT: warm paper backgrounds, white surfaces, dark text, subtle borders, gold accents */
+:root,
+:root[data-theme='light'] {
+  --c-bg: var(--paper);
+  --c-surface: var(--white);
+  --c-surface-2: color-mix(in srgb, var(--paper) 72%, var(--line-light));
+  --c-fg: var(--ink);
+  --c-fg-muted: var(--ink-muted-small);
+  --c-border: var(--line-light);
+  --c-gold: var(--gold);
+  --c-gold-light: var(--gold-light);
+  --c-on-gold: var(--charcoal-1);
+  --c-focus: var(--ink);
+  --c-control-border: var(--ink-muted);  /* >= 3:1 against white/paper: WCAG 1.4.11 for input boundaries */
+  --c-link: var(--ink);
+  --c-ok: var(--ok);
+  --c-warn: var(--warn);
+  --c-err: #A63A3A;           /* error text/icon on light surfaces needs more contrast than #C44E4E */
+  --c-info: var(--info);
+  --c-ok-bg: color-mix(in srgb, var(--ok) 10%, var(--white));
+  --c-warn-bg: color-mix(in srgb, var(--warn) 12%, var(--white));
+  --c-err-bg: color-mix(in srgb, var(--err) 10%, var(--white));
+  --c-info-bg: color-mix(in srgb, var(--info) 10%, var(--white));
+  --c-overlay: rgb(23 27 30 / .6);
+  --shadow: 0 1px 2px rgb(23 27 30 / .06), 0 8px 24px rgb(23 27 30 / .08);
+}
+
+/* DARK: charcoal backgrounds, elevated dark surfaces, light text, dark borders, refined gold */
+:root[data-theme='dark'] {
+  --c-bg: var(--charcoal-1);
+  --c-surface: var(--charcoal-2);
+  --c-surface-2: var(--charcoal-3);
+  --c-fg: var(--paper);
+  --c-fg-muted: var(--paper-muted-small);
+  --c-border: var(--line-dark);
+  --c-gold: var(--gold);
+  --c-gold-light: var(--gold-light);
+  --c-on-gold: var(--charcoal-1);
+  --c-focus: var(--gold-light);
+  --c-control-border: var(--ink-muted);
+  --c-link: var(--gold-light);
+  --c-ok: #4DB98A;
+  --c-warn: #E0A64F;
+  --c-err: #E27A7A;
+  --c-info: #7AA8D6;
+  --c-ok-bg: color-mix(in srgb, var(--ok) 16%, var(--charcoal-2));
+  --c-warn-bg: color-mix(in srgb, var(--warn) 16%, var(--charcoal-2));
+  --c-err-bg: color-mix(in srgb, var(--err) 16%, var(--charcoal-2));
+  --c-info-bg: color-mix(in srgb, var(--info) 16%, var(--charcoal-2));
+  --c-overlay: rgb(0 0 0 / .65);
+  --shadow: 0 1px 2px rgb(0 0 0 / .3), 0 8px 24px rgb(0 0 0 / .35);
+}
+
+/* Text size preference (settings). rem units scale everything. */
+html { font-size: 100%; }
+html[data-textsize='large'] { font-size: 112.5%; }
+html[data-textsize='xlarge'] { font-size: 125%; }

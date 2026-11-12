@@ -1,0 +1,54 @@
+/* Minimal reset + typography. Arabic: no artificial letter-spacing (guide, page 06). */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body, h1, h2, h3, h4, p, ul, ol, dl, dd, figure, blockquote, fieldset { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+fieldset { border: 0; min-width: 0; }
+img, svg { display: block; max-width: 100%; }
+button, input, textarea, select { font: inherit; color: inherit; letter-spacing: 0; }
+button { cursor: pointer; background: none; border: 0; padding: 0; }
+button:disabled { cursor: not-allowed; }
+a { color: inherit; }
+[hidden] { display: none !important; }
+
+html, body, #root { height: 100%; }
+body {
+  font-family: var(--font-sans);
+  font-size: 1rem;           /* Body 16/24 (guide UI scale) */
+  line-height: 1.5rem;
+  letter-spacing: 0;
+  color: var(--c-fg);
+  background: var(--c-bg);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+html[lang='ar'] body { line-height: 1.75rem; }  /* Arabic needs more leading for diacritics */
+
+h1, h2, h3 { font-weight: 600; letter-spacing: 0; }
+
+:focus-visible { outline: 2px solid var(--c-focus); outline-offset: 2px; border-radius: 4px; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.skip-link {
+  position: fixed; inset-block-start: 8px; inset-inline-start: 8px; z-index: 100;
+  background: var(--c-gold); color: var(--c-on-gold); padding: 10px 16px; border-radius: var(--radius); font-weight: 600;
+  transform: translateY(-200%); text-decoration: none;
+}
+.skip-link:focus { transform: none; }
+
+.link { color: var(--c-link); text-decoration: underline; text-decoration-color: var(--c-gold); text-decoration-thickness: 2px; text-underline-offset: 4px; font-weight: 500; }
+.link:hover { text-decoration-color: currentColor; }
+.link--icon { display: inline-flex; align-items: center; gap: 6px; }
+
+[dir='rtl'] .flip-rtl { transform: scaleX(-1); }
+[dir='ltr'] .flip-rtl-reverse { transform: scaleX(-1); }
+
+.spin { animation: spin .9s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+}

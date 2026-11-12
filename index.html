@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>مستشار | Mostashar</title>
+    <meta name="description" content="مستشار — المستشار القانوني الذكي للقانون السوري. نسخة واجهة تجريبية." />
+    <meta name="theme-color" content="#171B1E" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <script>
+      // Apply stored theme/language before first paint to avoid a flash.
+      (function () {
+        try {
+          var theme = localStorage.getItem('mostashar.theme') || 'system';
+          var dark = theme === 'dark' || (theme === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
+          var lang = localStorage.getItem('mostashar.lang') || 'ar';
+          var d = document.documentElement;
+          d.setAttribute('data-theme', dark ? 'dark' : 'light');
+          d.lang = lang;
+          d.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
